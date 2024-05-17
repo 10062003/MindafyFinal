@@ -1,0 +1,51 @@
+﻿@{Layout = null;}
+@Styles.Render("~/Content/desing.css")
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindafy</title>
+    <link href="~/Content/stylesIndex.css" rel="stylesheet" />
+    <link href="~/img/logo.png" rel="icon" type="image/x-icon" />
+    <link rel="icon" src="@Url.Content("~/img/logo.png")" />
+</head>
+<body>
+    <section class="banner">
+        <div class="container">
+
+            <button><a class="login-btn" href="@Url.Content("~/User/IniciarSesion")">Sign In</a></button>
+            <button><a class="register-btn" href="@Url.Content("~/User/Registro")">Or Register</a></button>
+
+            <div id="scene">
+                <h2 id="text">
+                    <span data-depth-y="2">M</span>
+                    <span data-depth-y="-2.5">i</span>
+                    <span data-depth-y="3">n</span>
+                    <span data-depth-y="-3.5">d</span>
+                    <span data-depth-y="1">a</span>
+                    <span data-depth-y="-1.5">f</span>
+                    <span data-depth-y="2.5">y</span>
+                </h2>
+
+                <div class="layer zIndexAbove" data-depth="0.5"><img class="img1" src="@Url.Content("~/img/pg-001.png")" alt=""></div>
+                <div class="layer zIndexAbove" data-depth="-1"><img class="img2" src="@Url.Content("~/img/pg-002.png")" alt=""></div>
+                <div class="layer zIndexAbove" data-depth="0.75"><img class="img3" src="@Url.Content("~/img/pg-003.png")" alt=""></div>
+                <div class="layer" data-depth="-0.5"><img class="img4" src="@Url.Content("~/img/pg-004.png")" alt=""></div>
+                <div class="layer" data-depth="0.80"><img class="img5" src="@Url.Content("~/img/pg-005.png")" alt=""></div>
+                <div class="layer" data-depth="-0.75"><img class="img6" src="@Url.Content("~/img/pg-006.png")" alt=""></div>
+                <div class="layer zIndexAbove" data-depth="0.65"><img class="img7" src="@Url.Content("~/img/pg-007.png")" alt=""></div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    <script>
+        var text = document.getElementById('text');
+        var scene = document.getElementById('scene');
+        var parallaxInstance = new Parallax(text);
+        var parallaxInstance = new Parallax(scene);
+    </script>
+</body>
+</html>

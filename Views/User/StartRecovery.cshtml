@@ -1,0 +1,25 @@
+﻿@model User.Models.ViewModel.Recovery
+@{
+    ViewBag.Title = "StartRecovery";
+    
+    
+}
+
+<h2>Recovery Pass</h2>
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <div class="form-style">
+            <form action="@Url.Content("~/User/StartRecovery")" method="post">
+                <label> Escribe tu correo electrónico</label>
+                @Html.TextBoxFor(d => d.Email, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.Email, null, new { style = "color:red;" })
+                <br />
+                <div class="text-right">
+                    <button class="btn btn-primary"> Recuperar</button>
+                </div>
+                <h4>@ViewData["Message"]</h4>
+            </form>
+        </div>
+    </div>
+</div>

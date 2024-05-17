@@ -1,0 +1,95 @@
+﻿@model User.Models.ViewModel.RegisterUser
+
+@{
+    ViewBag.Title = "Registro";
+    Layout = null;
+}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Formulario con Javascript</title>
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="~/Content/stylesRegister.css" rel="stylesheet" />
+    <link href="~/img/logo.png" rel="icon" type="image/x-icon" />
+</head>
+<body>
+
+    <main>
+        <div class="titulo_1">
+            REGISTER
+        </div>
+        <div class="titulo">
+            REGISTER
+        </div>
+        <!--<p class="text">
+          Forgotten your password or you login datails?
+          <a href="#">Get help</a> signing in
+        </p>-->
+        <form action="@Url.Action("Registro","User")" class="formulario" id="formulario" method="post">
+            <!-- Grupo: Nombre -->
+            <div class="formulario__grupo" id="grupo__Name">
+                <label for="Name" class="formulario__label">Nombre</label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="formulario__input" name="Name" id="Name" placeholder="John Doe">
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                </div>
+                <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+            </div>
+
+            <!-- Grupo: Contraseña -->
+            <div class="formulario__grupo" id="grupo__password">
+                <label for="password" class="formulario__label">Contraseña</label>
+                <div class="formulario__grupo-input">
+                    <input type="password" class="formulario__input" name="password" id="password">
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                </div>
+                <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+            </div>
+
+            <!-- Grupo: Correo Electronico -->
+            <div class="formulario__grupo" id="grupo__Email">
+                <label for="Email" class="formulario__label">Correo Electrónico</label>
+                <div class="formulario__grupo-input">
+                    <input type="Email" class="formulario__input" name="Email" id="Email" placeholder="correo@correo.com">
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                </div>
+                <p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo. Ademas debe terminar en ucundinamarca.edu.co</p>
+            </div>
+
+            <!-- Grupo: Teléfono -->
+            <div class="formulario__grupo" id="grupo__phone">
+                <label for="phone" class="formulario__label">Teléfono</label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="formulario__input" name="phone" id="phone" placeholder="4491234587  ">
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                </div>
+                <p class="formulario__input-error">El telefono solo puede contener numeros y el maximo son 10 dígitos.</p>
+            </div>
+
+            <!-- Grupo: Terminos y Condiciones -->
+            <div class="formulario__grupo" id="grupo__terminos">
+                <label class="formulario__label">
+                    <div class="hola">
+                        <input class="formulario__checkbox" type="checkbox" name="terminos" id="terminos">
+                        Acepto los Terminos y Condiciones
+                    </div>
+                </label>
+            </div>
+
+            <div class="formulario__mensaje" id="formulario__mensaje">
+                <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+            </div>
+
+            <div class="formulario__grupo formulario__grupo-btn-enviar">
+                <button type="submit" name="button" class="formulario__btn" id="btn">Enviar</button>
+                <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+            </div>
+        </form>
+    </main>
+    <script src="~/Scripts/appRegister.js"></script>
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+</body>
+</html>

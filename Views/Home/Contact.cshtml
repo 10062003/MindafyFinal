@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Mindafy Chats";
+
+}
+
+<h1>Welcome to Mindafy Chat`s Room</h1>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <input type="text" class="form-control" id="messagebox" />
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <input type="button" class="btn btn-success" id="sendbutton" value="Send" />
+        </div>
+    </div>
+
+    <div class="row">
+        <ul id="messagesonchat">
+        </ul>
+    </div>
+</div>
+
+<input type="hidden" id="showname" />
+
+@section scripts{
+
+    <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var chat = $.connection.chatHub;
+            chat.client.SendMessage = function (user, message) {
+
+                var divname = $("<div/>").text(user).html();
+                var divmessage = $("<div/>").text(message).html();
+
+                $("#messagesonchat").append("<li>" + "<b>" + divname + "</b>" + ":" + divmessage + "</li>");
+            };
+
+            var username = prompt("Write your name: ", "");
+            $("#showname").val(username);
+            $("#messagebox").focus();
+
+
+            $.connection.hub.start().done(function () {
+                $("#sendbutton").click(function () {
+
+                    var username = $("#showname").val();
+                    var sendmessage = $("#messagebox").val();
+
+                    chat.server.send(username, sendmessage);
+
+                    $("#messagebox").val("").focus();
+
+
+                });
+            });
+
+        });
+    </script>
+}

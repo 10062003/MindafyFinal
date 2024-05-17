@@ -1,0 +1,37 @@
+﻿
+@model Mindafy.Models.ViewModels.SubjectModel
+@{
+    ViewBag.Title = "New Subject";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+
+@using (Html.BeginForm("NewSubject", "Subject", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                @Html.LabelFor(d => d.Name)
+                @Html.TextBoxFor(d => d.Name, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.Name, null, new { @class = "red" })
+            </div>
+            <div>
+                @Html.LabelFor(d => d.Description)
+                @Html.TextBoxFor(d => d.Description, "", new { @class = "form-control" })
+            </div>
+           
+            <div style="text-align:right;">
+                <input value="Save" class="btn btn-primary"  type="submit"/>
+            </div>
+                 
+        </div>
+
+
+
+    </div>
+
+}
+
+

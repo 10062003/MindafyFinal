@@ -1,0 +1,46 @@
+﻿
+@model List<Mindafy.Models.ViewModels.ListaSubject>
+@{
+    ViewBag.Title = "Subject";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Average</th>
+                
+               
+            </tr>
+            @foreach (var oElemento in Model)
+            {
+        <tr>
+            <td>@oElemento.IDSubject</td>
+            <td>@oElemento.NameSubject</td>
+            <td>@oElemento.DescriptionSubject</td>
+            <td>@oElemento.AverageSubject</td>
+            
+            <td>
+                <a class="btn btn-default" href="~/Subject/Edit/@oElemento.IDSubject">Edit</a>
+                <a class="btn btn-danger" href="~/Subject/Delete/@oElemento.IDSubject">Delete</a>
+
+            </td>
+        </tr>
+            }
+
+        </table>
+
+    </div>
+</div>
+<tr>
+    <td>
+        <a href="/Subject/NewSubject" class="btn btn-primary">New Subject</a>
+        <a href="/Activity/Activity" class="btn btn-secondary">New Activity</a>
+        <a href="/Home/Contact" class="btn btn-success">New Chat</a>
+    </td>
+</tr>

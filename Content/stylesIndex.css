@@ -1,0 +1,143 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Graduate&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Graduate', cursive;
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(#d1c0a8, #a0816c);
+}
+
+    .container #scene {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+        .container #scene #text {
+            position: absolute;
+            display: flex !important;
+            position: relative;
+            color: #fff;
+            font-size: 14vw;
+            z-index: 100;
+        }
+
+            .container #scene #text span {
+                position: relative !important;
+                display: inline-block;
+                text-shadow: 1px 1px 0 #e1e1e1, 2px 2px 0 #e1e1e1, 3px 3px 0 #e1e1e1, 4px 4px 0 #e1e1e1, 5px 5px 0 #e1e1e1, 6px 6px 0 #e1e1e1, 7px 7px 0 #e1e1e1, 8px 8px 0 #e1e1e1, 22px 30px 0 rgba(0, 0, 0, 0.1);
+            }
+
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+    .layer img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        object-fit: cover;
+    }
+
+        .layer img.img1 {
+            top: 350px;
+            left: 1090px;
+        }
+
+        .layer img.img2 {
+            top: 200px;
+            left: 700px;
+        }
+
+        .layer img.img3 {
+            top: 300px;
+            left: 200px;
+        }
+
+        .layer img.img4 {
+            top: 400px;
+            left: 500px;
+        }
+
+        .layer img.img5 {
+            top: 170px;
+            left: 1100px;
+        }
+
+        .layer img.img6 {
+            top: 380px;
+            left: 800px;
+        }
+
+        .layer img.img7 {
+            top: 170px;
+            left: 350px;
+        }
+
+.zIndexAbove {
+    z-index: 101;
+}
+
+.login-btn {
+    position: absolute;
+    top: 600px;
+    left: 680px;
+    width: 400px;
+    text-decoration: none;
+    background-color: transparent;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.8rem;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    transition: 0.3s;
+}
+
+.register-btn {
+    position: absolute;
+    top: 600px;
+    left: 960px;
+    width: 300px;
+    text-decoration: none;
+    background-color: transparent;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.8rem;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.register-btn:hover {
+    text-decoration: none;
+    color: white;
+}

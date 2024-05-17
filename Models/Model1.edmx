@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MindafyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="id_Activity" />
+          </Key>
+          <Property Name="id_Activity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="start_Date_Activity" Type="date" />
+          <Property Name="end_Date_Activity" Type="date" />
+          <Property Name="description_Activity" Type="text" />
+          <Property Name="name_Activity" Type="nvarchar" MaxLength="100" />
+          <Property Name="state" Type="bit" />
+          <Property Name="Note" Type="float" />
+        </EntityType>
+        <EntityType Name="Conforms">
+          <Key>
+            <PropertyRef Name="id_Conforms" />
+          </Key>
+          <Property Name="id_Subject" Type="int" />
+          <Property Name="id_Activity" Type="int" />
+          <Property Name="id_Conforms" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Establishes">
+          <Key>
+            <PropertyRef Name="id_Establishes" />
+          </Key>
+          <Property Name="id_Subject" Type="int" />
+          <Property Name="id_Student" Type="int" />
+          <Property Name="id_Establishes" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="files_Schedule">
+          <Key>
+            <PropertyRef Name="id_file" />
+          </Key>
+          <Property Name="name_File_Schedule" Type="varchar" MaxLength="50" />
+          <Property Name="file_Schedule" Type="varbinary(max)" />
+          <Property Name="extension_File_Schedule" Type="char" MaxLength="5" />
+          <Property Name="id_file" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="insert">
+          <Key>
+            <PropertyRef Name="id_insert" />
+          </Key>
+          <Property Name="id_file" Type="int" />
+          <Property Name="id_Activity" Type="int" />
+          <Property Name="id_insert" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="id_Student" />
+          </Key>
+          <Property Name="id_Student" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_Student" Type="varchar" MaxLength="100" />
+          <Property Name="pass_Student" Type="varchar" MaxLength="200" />
+          <Property Name="mail_Student" Type="varchar" MaxLength="100" />
+          <Property Name="phone_Student" Type="varchar" MaxLength="50" />
+          <Property Name="token_recovery" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="id_Subject" />
+          </Key>
+          <Property Name="id_Subject" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_Subject" Type="nvarchar" MaxLength="100" />
+          <Property Name="description_Subject" Type="text" />
+          <Property Name="average_Subject" Type="float" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Conforms_Schedule">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="0..1" />
+          <End Role="Conforms" Type="Self.Conforms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="id_Activity" />
+            </Principal>
+            <Dependent Role="Conforms">
+              <PropertyRef Name="id_Activity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Conforms_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="Conforms" Type="Self.Conforms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="id_Subject" />
+            </Principal>
+            <Dependent Role="Conforms">
+              <PropertyRef Name="id_Subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Establishes_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Establishes" Type="Self.Establishes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="id_Student" />
+            </Principal>
+            <Dependent Role="Establishes">
+              <PropertyRef Name="id_Student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Establishes_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="Establishes" Type="Self.Establishes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="id_Subject" />
+            </Principal>
+            <Dependent Role="Establishes">
+              <PropertyRef Name="id_Subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_insert_Activity">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="0..1" />
+          <End Role="insert" Type="Self.insert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="id_Activity" />
+            </Principal>
+            <Dependent Role="insert">
+              <PropertyRef Name="id_Activity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_insert_files_Schedule">
+          <End Role="files_Schedule" Type="Self.files_Schedule" Multiplicity="0..1" />
+          <End Role="insert" Type="Self.insert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="files_Schedule">
+              <PropertyRef Name="id_file" />
+            </Principal>
+            <Dependent Role="insert">
+              <PropertyRef Name="id_file" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MindafyModelStoreContainer">
+          <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Conforms" EntityType="Self.Conforms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Establishes" EntityType="Self.Establishes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="files_Schedule" EntityType="Self.files_Schedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="insert" EntityType="Self.insert" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Conforms_Schedule" Association="Self.FK_Conforms_Schedule">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="Conforms" EntitySet="Conforms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conforms_Subject" Association="Self.FK_Conforms_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Conforms" EntitySet="Conforms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Establishes_Student" Association="Self.FK_Establishes_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Establishes" EntitySet="Establishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Establishes_Subject" Association="Self.FK_Establishes_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Establishes" EntitySet="Establishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_insert_Activity" Association="Self.FK_insert_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="insert" EntitySet="insert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_insert_files_Schedule" Association="Self.FK_insert_files_Schedule">
+            <End Role="files_Schedule" EntitySet="files_Schedule" />
+            <End Role="insert" EntitySet="insert" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MindafyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="id_Activity" />
+          </Key>
+          <Property Name="id_Activity" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="start_Date_Activity" Type="DateTime" Precision="0" />
+          <Property Name="end_Date_Activity" Type="DateTime" Precision="0" />
+          <Property Name="description_Activity" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="name_Activity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Boolean" />
+          <Property Name="Note" Type="Double" />
+          <NavigationProperty Name="Conforms" Relationship="Self.FK_Conforms_Schedule" FromRole="Activity" ToRole="Conforms" />
+          <NavigationProperty Name="insert" Relationship="Self.FK_insert_Activity" FromRole="Activity" ToRole="insert" />
+        </EntityType>
+        <EntityType Name="Conforms">
+          <Key>
+            <PropertyRef Name="id_Conforms" />
+          </Key>
+          <Property Name="id_Subject" Type="Int32" />
+          <Property Name="id_Activity" Type="Int32" />
+          <Property Name="id_Conforms" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Activity" Relationship="Self.FK_Conforms_Schedule" FromRole="Conforms" ToRole="Activity" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK_Conforms_Subject" FromRole="Conforms" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="Establishes">
+          <Key>
+            <PropertyRef Name="id_Establishes" />
+          </Key>
+          <Property Name="id_Subject" Type="Int32" />
+          <Property Name="id_Student" Type="Int32" />
+          <Property Name="id_Establishes" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Establishes_Student" FromRole="Establishes" ToRole="Student" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK_Establishes_Subject" FromRole="Establishes" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="files_Schedule">
+          <Key>
+            <PropertyRef Name="id_file" />
+          </Key>
+          <Property Name="name_File_Schedule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="file_Schedule" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="extension_File_Schedule" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="id_file" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="insert" Relationship="Self.FK_insert_files_Schedule" FromRole="files_Schedule" ToRole="insert" />
+        </EntityType>
+        <EntityType Name="insert">
+          <Key>
+            <PropertyRef Name="id_insert" />
+          </Key>
+          <Property Name="id_file" Type="Int32" />
+          <Property Name="id_Activity" Type="Int32" />
+          <Property Name="id_insert" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Activity" Relationship="Self.FK_insert_Activity" FromRole="insert" ToRole="Activity" />
+          <NavigationProperty Name="files_Schedule" Relationship="Self.FK_insert_files_Schedule" FromRole="insert" ToRole="files_Schedule" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="id_Student" />
+          </Key>
+          <Property Name="id_Student" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_Student" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="pass_Student" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="mail_Student" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="phone_Student" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="token_recovery" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Establishes" Relationship="Self.FK_Establishes_Student" FromRole="Student" ToRole="Establishes" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="id_Subject" />
+          </Key>
+          <Property Name="id_Subject" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="description_Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="average_Subject" Type="Double" />
+          <NavigationProperty Name="Conforms" Relationship="Self.FK_Conforms_Subject" FromRole="Subject" ToRole="Conforms" />
+          <NavigationProperty Name="Establishes" Relationship="Self.FK_Establishes_Subject" FromRole="Subject" ToRole="Establishes" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Conforms_Schedule">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="0..1" />
+          <End Role="Conforms" Type="Self.Conforms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="id_Activity" />
+            </Principal>
+            <Dependent Role="Conforms">
+              <PropertyRef Name="id_Activity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_insert_Activity">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="0..1" />
+          <End Role="insert" Type="Self.insert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="id_Activity" />
+            </Principal>
+            <Dependent Role="insert">
+              <PropertyRef Name="id_Activity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Conforms_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="Conforms" Type="Self.Conforms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="id_Subject" />
+            </Principal>
+            <Dependent Role="Conforms">
+              <PropertyRef Name="id_Subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Establishes_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Establishes" Type="Self.Establishes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="id_Student" />
+            </Principal>
+            <Dependent Role="Establishes">
+              <PropertyRef Name="id_Student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Establishes_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="Establishes" Type="Self.Establishes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="id_Subject" />
+            </Principal>
+            <Dependent Role="Establishes">
+              <PropertyRef Name="id_Subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_insert_files_Schedule">
+          <End Role="files_Schedule" Type="Self.files_Schedule" Multiplicity="0..1" />
+          <End Role="insert" Type="Self.insert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="files_Schedule">
+              <PropertyRef Name="id_file" />
+            </Principal>
+            <Dependent Role="insert">
+              <PropertyRef Name="id_file" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MindafyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activity" EntityType="Self.Activity" />
+          <EntitySet Name="Conforms" EntityType="Self.Conforms" />
+          <EntitySet Name="Establishes" EntityType="Self.Establishes" />
+          <EntitySet Name="files_Schedule" EntityType="Self.files_Schedule" />
+          <EntitySet Name="insert" EntityType="Self.insert" />
+          <EntitySet Name="Student" EntityType="Self.Student" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Conforms_Schedule" Association="Self.FK_Conforms_Schedule">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="Conforms" EntitySet="Conforms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_insert_Activity" Association="Self.FK_insert_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="insert" EntitySet="insert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conforms_Subject" Association="Self.FK_Conforms_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Conforms" EntitySet="Conforms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Establishes_Student" Association="Self.FK_Establishes_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Establishes" EntitySet="Establishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Establishes_Subject" Association="Self.FK_Establishes_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Establishes" EntitySet="Establishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_insert_files_Schedule" Association="Self.FK_insert_files_Schedule">
+            <End Role="files_Schedule" EntitySet="files_Schedule" />
+            <End Role="insert" EntitySet="insert" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MindafyModelStoreContainer" CdmEntityContainer="MindafyEntities">
+          <EntitySetMapping Name="Activity">
+            <EntityTypeMapping TypeName="MindafyModel.Activity">
+              <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="id_Activity" ColumnName="id_Activity" />
+                <ScalarProperty Name="start_Date_Activity" ColumnName="start_Date_Activity" />
+                <ScalarProperty Name="end_Date_Activity" ColumnName="end_Date_Activity" />
+                <ScalarProperty Name="description_Activity" ColumnName="description_Activity" />
+                <ScalarProperty Name="name_Activity" ColumnName="name_Activity" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Conforms">
+            <EntityTypeMapping TypeName="MindafyModel.Conforms">
+              <MappingFragment StoreEntitySet="Conforms">
+                <ScalarProperty Name="id_Subject" ColumnName="id_Subject" />
+                <ScalarProperty Name="id_Activity" ColumnName="id_Activity" />
+                <ScalarProperty Name="id_Conforms" ColumnName="id_Conforms" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Establishes">
+            <EntityTypeMapping TypeName="MindafyModel.Establishes">
+              <MappingFragment StoreEntitySet="Establishes">
+                <ScalarProperty Name="id_Subject" ColumnName="id_Subject" />
+                <ScalarProperty Name="id_Student" ColumnName="id_Student" />
+                <ScalarProperty Name="id_Establishes" ColumnName="id_Establishes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="files_Schedule">
+            <EntityTypeMapping TypeName="MindafyModel.files_Schedule">
+              <MappingFragment StoreEntitySet="files_Schedule">
+                <ScalarProperty Name="name_File_Schedule" ColumnName="name_File_Schedule" />
+                <ScalarProperty Name="file_Schedule" ColumnName="file_Schedule" />
+                <ScalarProperty Name="extension_File_Schedule" ColumnName="extension_File_Schedule" />
+                <ScalarProperty Name="id_file" ColumnName="id_file" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="insert">
+            <EntityTypeMapping TypeName="MindafyModel.insert">
+              <MappingFragment StoreEntitySet="insert">
+                <ScalarProperty Name="id_file" ColumnName="id_file" />
+                <ScalarProperty Name="id_Activity" ColumnName="id_Activity" />
+                <ScalarProperty Name="id_insert" ColumnName="id_insert" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="MindafyModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="id_Student" ColumnName="id_Student" />
+                <ScalarProperty Name="name_Student" ColumnName="name_Student" />
+                <ScalarProperty Name="pass_Student" ColumnName="pass_Student" />
+                <ScalarProperty Name="mail_Student" ColumnName="mail_Student" />
+                <ScalarProperty Name="phone_Student" ColumnName="phone_Student" />
+                <ScalarProperty Name="token_recovery" ColumnName="token_recovery" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subject">
+            <EntityTypeMapping TypeName="MindafyModel.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="id_Subject" ColumnName="id_Subject" />
+                <ScalarProperty Name="name_Subject" ColumnName="name_Subject" />
+                <ScalarProperty Name="description_Subject" ColumnName="description_Subject" />
+                <ScalarProperty Name="average_Subject" ColumnName="average_Subject" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MindafyModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

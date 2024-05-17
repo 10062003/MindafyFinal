@@ -1,0 +1,47 @@
+﻿
+@model List<Mindafy.Models.ViewModels.ListActivity>
+@{
+    ViewBag.Title = "Activity";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Start Date Activity</th>
+                <th>End Date Activity</th>
+                <th>State</th>
+                <th>Note</th>
+            </tr>
+            @foreach (var oElemento in Model)
+            {
+                <tr>
+                    <td>@oElemento.IdActivity</td>
+                    <td>@oElemento.NameActivity</td>
+                    <td>@oElemento.DescriptionActivity</td>
+                    <td>@oElemento.StartDateActivity</td>
+                    <td>@oElemento.EndDateActivity</td>
+                    <td>@oElemento.State</td>
+                    <td>@oElemento.Note</td>
+                    <td>
+                        <a class="btn btn btn-success" href="~/Activity/EditActivity/@oElemento.IdActivity">Edit</a>
+                        <a class="btn btn-danger" href="~/Activity/Delete/@oElemento.IdActivity">Delete</a>
+                       
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>
+<div class="row" style="text-align:left;padding:5px;">
+
+    <a href="/Activity/NewActivity" class="btn btn-primary">New Activity</a>
+
+</div>

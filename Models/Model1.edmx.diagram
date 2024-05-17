@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="68ba834f7a614be4b85a98fbca460245" Name="Diagram1">
+        <EntityTypeShape EntityType="MindafyModel.Activity" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MindafyModel.Conforms" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MindafyModel.Establishes" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MindafyModel.files_Schedule" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MindafyModel.insert" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MindafyModel.Student" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MindafyModel.Subject" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MindafyModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="MindafyModel.FK_Conforms_Schedule" ManuallyRouted="false" />
+        <AssociationConnector Association="MindafyModel.FK_insert_Activity" ManuallyRouted="false" />
+        <AssociationConnector Association="MindafyModel.FK_Conforms_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="MindafyModel.FK_Establishes_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="MindafyModel.FK_Establishes_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="MindafyModel.FK_insert_files_Schedule" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
